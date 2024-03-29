@@ -18,11 +18,19 @@ let posts=[
     },
     {
         username:"Vibhav",
-        content:"Selected as Intern at Microsoft"
+        content:"Selected as an Intern at Microsoft"
     }
 ]
 app.get("/posts",(req,res)=>{
     res.render("index.ejs",{posts});
+})
+app.get("/posts/new",(req,res)=>{
+    res.render("new.ejs");
+})
+app.post("/posts",(req,res)=>{
+    let {username,content}=req.body;
+    posts.push({username,content});
+   res.redirect("/posts");
 })
 app.listen(port,()=>{
     console.log("listening on port 8080");

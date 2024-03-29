@@ -1,5 +1,6 @@
 .post{
     background-color: blanchedalmond;
+    
 }
 h1{
     color: maroon;
@@ -9,4 +10,12 @@ h1{
 }
 body{
     font-size: larger;
+}
+a{
+    color: brown;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid maroon;
+    border-radius: 9px;
 }
