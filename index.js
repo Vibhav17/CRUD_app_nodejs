@@ -9,7 +9,8 @@ app.use(express.json());
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"))
 app.use(express.static(path.join(__dirname,"public")))
-
+var methodOverride = require('method-override')
+app.use(methodOverride('_method'))
 let posts=[
     {
         id:uuidv4(),
@@ -44,6 +45,20 @@ app.get("/posts/:id",(req,res)=>{
     let post=posts.find((p)=>id===p.id);
     console.log(post);
     res.render("show.ejs",{post});
+})
+app.patch("/posts/:id",(req,res)=>{
+    let {id}=req.params;
+    let newcontent=req.body.content;
+    let post=posts.find((p)=>id===p.id);
+     post.content=newcontent;
+     res.redirect("/posts")
+
+})
+app.get("/posts/:id/edit",(req,res)=>{
+    let {id}=req.params;
+    let post=posts.find((p)=>id===p.id);
+    console.log(post);
+    res.render("edit.ejs",{post});
 })
 app.listen(port,()=>{
     console.log("listening on port 8080");
